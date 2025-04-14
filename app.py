@@ -64,9 +64,9 @@ if uploaded_files:
         referring_doctors = list(reader)
 
     # Add table column headings explicitly
-    st.subheader("Referring Doctors")
+    st.subheader("Remissbedömning")
     if referring_doctors:
-        st.write("### Tabell med remissdata")
+        st.write("### Bedömda remisser")
         st.table(pd.DataFrame(referring_doctors, columns=["Remittent", "Lämplig mottagare", "Bedömningens säkerhet"]))
     else:
         st.write("No referring doctors found.")
