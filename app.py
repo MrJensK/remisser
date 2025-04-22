@@ -56,7 +56,7 @@ if uploaded_files:
                     "Du är en medicinsk sekreterare som analyserar remisser. "
                     "Extrahera:\n- Namnet på inremitterande läkare (Doktor)\n"
                     "- Vilken klinik patienten troligen ska remitteras till "
-                    "(en av: Kardiologen, Onkologen, Barnmedicin, Lungmedicin, Njurmedicin)\n"
+                    #"(en av: Kardiologen, Onkologen, Barnmedicin, Lungmedicin, Njurmedicin)\n"
                     "- Hur säker du är på detta (Väldigt säker, Säker, Osäker)\n\n"
                     "Svara i följande format:\n"
                     "Doktor: <namn>\n"
