@@ -73,3 +73,4 @@ if uploaded_files:
     st.subheader("Remissbedömning")
     df = pd.DataFrame(referring_doctors, columns=["Filnamn", "Remittent", "Lämplig mottagare", "Bedömningens säkerhet"])
     st.table(df)
+    st.text_area("Rått GPT-svar", content, height=150)
