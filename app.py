@@ -15,22 +15,32 @@ st.title("Remissanalys med OCR-stöd")
 uploaded_files = st.file_uploader("Ladda upp remisser i PDF-format", type="pdf", accept_multiple_files=True)
 
 def extract_text_from_pdf(pdf_file):
-    """Försök extrahera text, använd OCR om det inte går."""
-    pdf_reader = PdfReader(pdf_file)
-    text = ""
-    for page in pdf_reader.pages:
-        if page.extract_text():
-            text += page.extract_text() + "\n"
-    
-    if text.strip():  # Om vi hittade text, returnera den
-        return text
+    # Första läsningen: försök extrahera text
+    pdf_file.seek(0)
+    reader = PdfReader(pdf_file)
 
-    # Annars: använd OCR på varje sida som bild
-    images = convert_from_bytes(pdf_file.read(), dpi=300)
+    extracted_text = ""
+    has_text = False
+
+    for page in reader.pages:
+        page_text = page.extract_text()
+        if page_text and page_text.strip():
+            has_text = True
+            extracted_text += page_text + "\n"
+
+    if has_text:
+        return extracted_text.strip()
+
+    # Andra läsningen: OCR, men vi måste läsa om hela filen
+    pdf_file.seek(0)  # Viktigt!
+    file_bytes = pdf_file.read()
+
+    images = convert_from_bytes(file_bytes, dpi=300)
     ocr_text = ""
     for image in images:
-        ocr_text += pytesseract.image_to_string(image, lang='swe') + "\n"
-    return ocr_text
+        ocr_text += pytesseract.image_to_string(image, lang="swe") + "\n"
+
+    return ocr_text.strip()
 
 if uploaded_files:
     referring_doctors = []
