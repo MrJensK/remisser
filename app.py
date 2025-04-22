@@ -55,8 +55,8 @@ if uploaded_files:
                 {"role": "system", "content": (
                     "Du är en medicinsk sekreterare som analyserar remisser. "
                     "Extrahera:\n- Namnet på inremitterande läkare (Doktor)\n"
-                    "- Vilken klinik patienten troligen ska remitteras till "
-                    #"(en av: Kardiologen, Onkologen, Barnmedicin, Lungmedicin, Njurmedicin)\n"
+                    "- Vilken klinik patienten troligen ska remitteras till\n"
+                    "Om remissen innehåller texten SVF Ska Trolig motagare: vara OBS SVF\n"
                     "- Hur säker du är på detta (Väldigt säker, Säker, Osäker)\n\n"
                     "Svara i följande format:\n"
                     "Doktor: <namn>\n"
